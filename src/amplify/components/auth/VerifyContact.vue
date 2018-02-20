@@ -51,6 +51,7 @@
 
 <script>
 import { Auth, Logger, JS } from 'aws-amplify'
+import AmplifyStore from '../../AmplifyStore'
 import AmplifyTheme from '../../AmplifyTheme'
 
 const logger = new Logger('SignInComp');
@@ -70,7 +71,7 @@ export default {
     }
   },
   created() {
-    const user = this.$store.state.user
+    const user = AmplifyStore.state.user
     this.unverified = user && user.unverified? user.unverified : []
   },
   methods: {

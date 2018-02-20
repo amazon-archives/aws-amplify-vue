@@ -25,6 +25,8 @@
 <script>
 import { Auth, Logger } from 'aws-amplify'
 
+import AmplifyStore from '../../AmplifyStore'
+
 const logger = new Logger('SignOutComp');
 
 export default {
@@ -35,7 +37,7 @@ export default {
     }
   },
   computed: {
-    user() { return this.$store.state.amplify.user }
+    user() { return AmplifyStore.state.user }
   },
   methods: {
     signOut: function(event) {

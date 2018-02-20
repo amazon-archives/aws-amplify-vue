@@ -41,6 +41,7 @@
 
 <script>
 import { Auth, Logger } from 'aws-amplify'
+import AmplifyStore from '../../AmplifyStore'
 import AmplifyTheme from '../../AmplifyTheme'
 
 const logger = new Logger('ForgotPasswordComp');
@@ -57,7 +58,7 @@ export default {
     }
   },
   computed: {
-    user() { return this.$store.state.amplify.user }
+    user() { return AmplifyStore.state.amplify.user }
   },
   methods: {
     send: function() {

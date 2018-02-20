@@ -51,6 +51,7 @@
 
 <script>
 import { Auth, Logger, JS } from 'aws-amplify'
+import AmplifyStore from '../../AmplifyStore'
 import AmplifyTheme from '../../AmplifyTheme'
 
 const logger = new Logger('SignInComp');
@@ -100,7 +101,7 @@ export default {
             this.$router.push('/');
           } else {
             Object.assign(user, data);
-            this.$store.commit('setUser', user);
+            AmplifyStore.commit('setUser', user);
             this.$router.push('/auth/verifyContact');
           }
         });

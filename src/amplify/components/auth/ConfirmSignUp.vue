@@ -38,7 +38,7 @@
 
 <script>
 import { Auth, Logger } from 'aws-amplify'
-
+import AmplifyStore from '../../AmplifyStore'
 import AmplifyTheme from '../../AmplifyTheme'
 
 const logger = new Logger('ConfirmSignUpComp');
@@ -54,7 +54,7 @@ export default {
     }
   },
   computed: {
-    user() { return this.$store.state.amplify.user }
+    user() { return AmplifyStore.state.amplify.user }
   },
   methods: {
     confirm: function(event) {
