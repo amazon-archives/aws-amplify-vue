@@ -57,8 +57,11 @@ const AppTheme = {
   input: {
     width: '100%',
     fontSize: '1em',
-    padding: '0.2em',
-    boxSizing: 'border-box'
+    padding: '0.5em',
+    boxSizing: 'border-box',
+    outline: 'none',
+    border: 'none',
+    borderBottom: '2px solid #2196F3'
   },
   inputLabel: {
     display: 'block',
@@ -71,7 +74,11 @@ const AppTheme = {
   },
   action: {
     fontSize: '1em',
-    padding: '0.2em'
+    border: 'none',
+    outline: 'none',
+    padding: '12px 50px',
+    backgroundColor: '#ededed',
+    cursor: 'pointer'
   },
   footer: {
     marginTop: '1em'
@@ -83,7 +90,8 @@ const AppTheme = {
     float: 'right'
   },
   link: {
-    textDecoration: 'underline'
+    textDecoration: 'underline',
+    cursor: 'pointer'
   },
   error: {
     background: 'orange',
@@ -94,14 +102,13 @@ const AppTheme = {
     marginBottom: '1em',
     display: 'flex',
     justifyContent: 'space-between',
-    backgroundColor: '#727f80',
+    backgroundColor: '#2196F3',
     color: '#fff',
-    paddingTop: '1em',
-    paddingBottom: '0.5em',
-
+    padding: '1em',
     item: {
       fontWeight: '500',
-      padding: '0 0.5em'
+      padding: '0 0.5em',
+      cursor: 'pointer'
     },
     greeting: {
       fontWeight: '500',
