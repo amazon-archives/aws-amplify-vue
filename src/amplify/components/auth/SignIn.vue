@@ -77,6 +77,7 @@ export default {
       Auth.signIn(this.username, this.password)
         .then(user => {
           logger.debug('sign in success', user);
+          AmplifyStore.commit('setUser', user);
           return user
         })
         .then(user => {
@@ -97,11 +98,10 @@ export default {
       Auth.verifiedContact(user)
         .then(data => {
           logger.debug('verify result', data);
+          AmplifyStore.commit('setUserVerification', data);
           if (!JS.isEmpty(data.verified)) {
             this.$router.push('/');
           } else {
-            Object.assign(user, data);
-            AmplifyStore.commit('setUser', user);
             this.$router.push('/auth/verifyContact');
           }
         });
