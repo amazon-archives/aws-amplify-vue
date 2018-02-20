@@ -1,5 +1,4 @@
 node_modules/**
-build
 .DS_Store
 .vscode
 src/aws-exports.js
