@@ -16,7 +16,7 @@ import { Cache } from 'aws-amplify'
 import { JS } from 'fsts'
 
 const CACHE_KEY_PREFIX = 'aws-amplify-vue-sample-notes-'
-export default class InMemory {
+export default class CacheStore {
   constructor(userId) {
     this.cache_key = CACHE_KEY_PREFIX + userId
     let notes = Cache.getItem(this.cache_key)

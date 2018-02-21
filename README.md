@@ -6,7 +6,7 @@ Sample VueJs integration with [aws-amplify](https://github.com/aws/aws-amplify)
 * [AWS Amplify Integration Explained](#aws-amplify-integration-explained)
   - [Setup AWS Amplify](#setup-aws-amplify)
   - [Auth Routing](#auth-routing)
-  - [Amplify Vue Components](#amplify-vue-components)
+  - [Storage Components](#storage-components)
 * [License](#license)
 
 ## Getting Started
@@ -105,7 +105,7 @@ import { AuthFilter } from '../amplify'
 router.beforeEach(AuthFilter);
 ```
 
-### Amplify Vue Components
+### Storage Components
 
 In this sample, `src/amplify` package register a group of Amplify related components. Other than Auth components, there are two storage related components:
 

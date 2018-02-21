@@ -13,7 +13,7 @@
 
 import { JS } from 'fsts'
 
-export default class InMemory {
+export default class InMemoryStore {
   constructor() {
     this.notes = [
       { id: 1, title: 'First', done: true },
