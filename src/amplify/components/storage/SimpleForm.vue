@@ -32,7 +32,7 @@
 
 <script>
 import { Auth, Storage, Logger } from 'aws-amplify'
-
+import AmplifyStore from '../../AmplifyStore'
 import AmplifyTheme from '../../AmplifyTheme'
 
 const logger = new Logger('SimpleForm');
@@ -47,7 +47,7 @@ export default {
   },
   props: ['path', 'fields', 'theme'],
   computed: {
-    userId: function() { return this.$store.state.userId }
+    userId: function() { return AmplifyStore.state.userId }
   },
   created() {
     logger.info('created...')

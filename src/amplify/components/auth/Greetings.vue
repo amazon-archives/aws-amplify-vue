@@ -44,7 +44,7 @@ export default {
         Auth.signOut()
             .then(data => {
                 logger.debug('sign out success', data);
-                this.$store.commit('setUser', null);
+                AmplifyStore.commit('setUser', null);
                 this.$router.push('/auth/signIn');
             })
             .catch(err => logger.error('sign out error', err))
