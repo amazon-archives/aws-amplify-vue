@@ -13,15 +13,14 @@
 
 <template>
   <div :style="theme.form">
-    <h1>hello</h1>
     <h1 :style="theme.header" v-if="!submitView">Verify Contact</h1>
     <h1 :style="theme.header" v-if="submitView">Submit Code</h1>
     <div v-if="!submitView">
-      <div :style="theme.inputRow" v-if="this.unverified.email">
+      <div :style="[theme.inputRow, {textAlign: 'left'}]" v-if="this.unverified.email">
         <input :style="theme.radio" type="radio" v-on:click="verifyEmail" />
         {{this.unverified.email}}
       </div>
-      <div :style="theme.inputRow" v-if="this.unverified.phone_number">
+      <div :style="[theme.inputRow, {textAlign: 'left'}]" v-if="this.unverified.phone_number">
         <input :style="theme.radio" type="radio"  v-on:click="verifyPhoneNumber" />
         {{this.unverified.phone_number}}
       </div>
@@ -60,7 +59,6 @@ export default {
   name: 'VerifyContact',
   data () {
     return {
-      unverified: [],
       verifyAttr: '',
 
       submitView: false,
@@ -70,9 +68,19 @@ export default {
       theme: AmplifyTheme
     }
   },
-  created() {
-    const user = AmplifyStore.state.user
-    this.unverified = user && user.unverified? user.unverified : []
+  computed: {
+    unverified() {
+      const verification = AmplifyStore.state.userVerification
+      return verification && verification.unverified
+        ? verification.unverified
+        : []
+    }
+  },
+  created: function() {
+    const verification = AmplifyStore.state.userVerification
+    if (!verification) {
+      this.$router.push('/')
+    }
   },
   methods: {
     verifyEmail: function() { this.verifyAttr = 'email' },
