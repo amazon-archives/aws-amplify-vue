@@ -1,6 +1,13 @@
-## AWS Amplify Vue Sample
+# AWS Amplify Vue Sample
 
 Sample VueJs integration with [aws-amplify](https://github.com/aws/aws-amplify)
+
+* [Getting Started](#getting-started)
+* [AWS Amplify Integration Explained](#aws-amplify-integration-explained)
+  - [Setup AWS Amplify](#setup-aws-amplify)
+  - [Auth Routing](#auth-routing)
+  - [Amplify Vue Components](#amplify-vue-components)
+* [License](#license)
 
 ## Getting Started
 
@@ -27,6 +34,89 @@ npm start
 ```
 
 Check http://localhost:8080/
+
+## AWS Amplify Integration Explained
+
+This sample demostrate some of the AWS Amplify integration with VueJs. Most of the Amplify logics are contained inside `src/amplify` folder.
+
+### Setup AWS Amplify
+
+It is recommended to configure Amplify library at the entry point of application. Here we choose `main.js`
+
+```
+import Amplify, { Auth, Logger } from 'aws-amplify'
+import aws_exports from './aws-exports'
+
+...
+
+Amplify.configure(aws_exports)
+```
+
+To have a quick test of the library, we added this piece code.
+
+```
+Amplify.Logger.LOG_LEVEL = 'DEBUG' // to show detailed logs from Amplify library
+
+const logger = new Logger('main')
+
+Auth.currentUserInfo()
+  .then(user => logger.debug(user))
+  .catch(err => logger.debug(err))
+```
+
+### Auth Routing
+
+There are two major auth routing concerns in an application, 1) Auth UI routing; 2) Access Control to application.
+
+#### Auth UI routing
+
+Just add AuthRouter to router.
+
+```
+import { AuthRouter } from '../amplify'
+
+Vue.use(Router)
+
+const router = new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    },
+
+    ...
+
+    AuthRouter
+  ]
+})
+
+```
+
+#### Access Control
+
+Just add AuthFilter to router
+
+```
+import { AuthFilter } from '../amplify'
+
+...
+
+router.beforeEach(AuthFilter);
+```
+
+### Amplify Vue Components
+
+In this sample, `src/amplify` package register a group of Amplify related components. Other than Auth components, there are two storage related components:
+
+* PhotoPicker
+  - registered as a-photo-picker
+  - showcase usage of Amplify Storage on binary data
+* SimpleForm
+  - registered as a-simple-form
+  - showcase usage of Amplify Storage on text data
+
+`src/components/Profile.vue` uses the two components to store user avatar and attributes.
 
 ## License
 
