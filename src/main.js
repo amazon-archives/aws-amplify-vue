@@ -27,9 +27,9 @@ Amplify.Logger.LOG_LEVEL = 'DEBUG'
 
 const logger = new Logger('main')
 
-Auth.currentAuthenticatedUser()
-    .then(user => logger.debug(user))
-    .catch(err => logger.debug(err))
+Auth.currentUserInfo()
+  .then(user => logger.debug(user))
+  .catch(err => logger.debug(err))
 
 /* eslint-disable no-new */
 new Vue({
