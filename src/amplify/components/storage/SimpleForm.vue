@@ -50,12 +50,11 @@ export default {
     userId: function() { return AmplifyStore.state.userId }
   },
   created() {
-    logger.info('created...')
+    logger.debug('simple form created...')
     this.load()
   },
   methods: {
     load() {
-      //const profileKey = 'profiles/' + this.userId
       Storage.get(this.path, { download: true })
         .then(data => {
           const body = data.Body.toString('utf8')

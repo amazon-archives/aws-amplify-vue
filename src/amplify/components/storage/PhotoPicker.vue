@@ -82,30 +82,17 @@ export default {
         .then(url => this.src = url)
     },
     pick: function(e) {
-      const that = this;
-      logger.debug(e);
-
       const file = e.target.files[0];
       const { name, size, type } = file;
       logger.debug(file);
 
       logger.debug('upload photo to ' + this.path)
-
       Storage.put(this.path, file, { contentType: type })
         .then(data => {
           logger.debug(data)
           this.getPhoto()
         })
         .catch(err => logger.error(err));
-
-      /*
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const url = e.target.result;
-        that.src = url;
-      }
-      reader.readAsDataURL(file);
-      */
     },
     imageError: function(e) {
       this.src = this.defSrc

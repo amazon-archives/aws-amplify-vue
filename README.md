@@ -52,7 +52,7 @@ import aws_exports from './aws-exports'
 Amplify.configure(aws_exports)
 ```
 
-To have a quick test of the library, we added this piece code.
+To have a quick test of the library, we added this piece of code.
 
 ```
 Amplify.Logger.LOG_LEVEL = 'DEBUG' // to show detailed logs from Amplify library
@@ -109,14 +109,14 @@ router.beforeEach(AuthFilter);
 
 In this sample, `src/amplify` package register a group of Amplify related components. Other than Auth components, there are two storage related components:
 
-* PhotoPicker
+* [PhotoPicker](https://github.com/aws-samples/aws-amplify-vue-sample/blob/master/src/amplify/components/storage/PhotoPicker.vue)
   - registered as a-photo-picker
   - showcase usage of Amplify Storage on binary data
-* SimpleForm
+* [SimpleForm](https://github.com/aws-samples/aws-amplify-vue-sample/blob/master/src/amplify/components/storage/SimpleForm.vue)
   - registered as a-simple-form
   - showcase usage of Amplify Storage on text data
 
-`src/components/Profile.vue` uses the two components to store user avatar and attributes.
+[Profile.vue](https://github.com/aws-samples/aws-amplify-vue-sample/blob/master/src/components/Profile.vue) uses the two components to store user avatar and attributes.
 
 ## License
 
