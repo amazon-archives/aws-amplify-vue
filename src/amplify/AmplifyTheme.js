@@ -68,7 +68,7 @@ const AppTheme = {
     textAlign: 'left'
   },
   actionRow: {
-    display: 'block',
+    display: 'flex',
     marginTop: '0.5em',
     textAlign: 'right'
   },

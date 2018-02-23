@@ -25,6 +25,7 @@ $ npm install
 $ npm install -g awsmobile-cli
 $ awsmobile init
 $ awsmobile user-signin enable
+$ awsmobile user-files enable
 $ awsmobile push
 ```
 
