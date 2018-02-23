@@ -14,23 +14,24 @@ Sample VueJs integration with [aws-amplify](https://github.com/aws/aws-amplify)
 1. Clone project and install dependencies    
 
 ```bash
-git clone https://github.com/aws-samples/aws-amplify-vue-sample.git
-cd aws-amplify-vue-sample
-npm install
+$ git clone https://github.com/aws-samples/aws-amplify-vue-sample.git
+$ cd aws-amplify-vue-sample
+$ npm install
 ```
 
 2. Copy your `aws-exports` file into the src directory, or intialize a new AWS Mobile project:
 
 ```bash
-awsmobile init
-awsmobile user-signin enable
-awsmobile push
+$ npm install -g awsmobile-cli
+$ awsmobile init
+$ awsmobile user-signin enable
+$ awsmobile push
 ```
 
 3. Start the project    
 
 ```bash
-npm start
+$ npm start
 ```
 
 Check http://localhost:8080/
@@ -43,7 +44,7 @@ This sample demostrate some of the AWS Amplify integration with VueJs. Most of t
 
 It is recommended to configure Amplify library at the entry point of application. Here we choose `main.js`
 
-```
+```js
 import Amplify, { Auth, Logger } from 'aws-amplify'
 import aws_exports from './aws-exports'
 
@@ -54,7 +55,7 @@ Amplify.configure(aws_exports)
 
 To have a quick test of the library, we added this piece of code.
 
-```
+```js
 Amplify.Logger.LOG_LEVEL = 'DEBUG' // to show detailed logs from Amplify library
 
 const logger = new Logger('main')
@@ -72,7 +73,7 @@ There are two major auth routing concerns in an application, 1) Auth UI routing;
 
 Just add AuthRouter to router.
 
-```
+```js
 import { AuthRouter } from '../amplify'
 
 Vue.use(Router)
@@ -97,7 +98,7 @@ const router = new Router({
 
 Just add AuthFilter to router
 
-```
+```js
 import { AuthFilter } from '../amplify'
 
 ...
