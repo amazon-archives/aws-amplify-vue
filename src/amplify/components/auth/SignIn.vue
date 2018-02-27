@@ -17,10 +17,10 @@
     <h1 :style="theme.header" v-if="confirmView">Confirm Sign In</h1>
     <div v-if="!confirmView">
       <div :style="theme.inputRow">
-        <input :style="theme.input" v-model="username" placeholder="Username" autofocus />
+        <input :style="theme.input" v-model="username" placeholder="Username" autofocus v-on:keyup.enter="signIn" />
       </div>
       <div :style="theme.inputRow">
-        <input :style="theme.input" v-model="password" type="password" placeholder="Password" />
+        <input :style="theme.input" v-model="password" type="password" placeholder="Password" v-on:keyup.enter="signIn" />
       </div>
       <div :style="theme.actionRow">
         <button :style="theme.action" v-on:click="signIn" :disabled="!username || !password">Sign In</button>
@@ -28,7 +28,7 @@
     </div>
     <div v-if="confirmView">
       <div :style="theme.inputRow">
-        <input :style="theme.input" v-model="code" placeholder="Code" />
+        <input :style="theme.input" v-model="code" placeholder="Code" v-on:keyup.enter="confirm" />
       </div>
       <div :style="theme.actionRow">
         <button :style="theme.action" v-on:click="confirm" :disabled="!code">Confirm</button>
