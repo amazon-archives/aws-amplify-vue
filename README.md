@@ -14,7 +14,7 @@ Sample VueJs integration with [aws-amplify](https://github.com/aws/aws-amplify)
 1. Clone project and install dependencies    
 
 ```bash
-$ git clone https://github.com/aws-samples/aws-amplify-vue-sample.git
+$ git clone https://github.com/aws-samples/aws-amplify-vue.git
 $ cd aws-amplify-vue-sample
 $ npm install
 ```
