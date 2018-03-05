@@ -1,6 +1,6 @@
-# AWS Amplify Vue Sample
+# AWS Amplify Vue Starter
 
-A Sample VueJs integration with [aws-amplify](https://github.com/aws/aws-amplify). **Please submit issues to the [aws-amplify](https://github.com/aws/aws-amplify/issues) repository**.
+A VueJs starter app integrated with [aws-amplify](https://github.com/aws/aws-amplify). **Please submit issues to the [aws-amplify](https://github.com/aws/aws-amplify/issues) repository**.
 
 * [Getting Started](#getting-started)
 * [AWS Amplify Integration Explained](#aws-amplify-integration-explained)
