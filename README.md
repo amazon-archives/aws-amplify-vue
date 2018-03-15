@@ -2,6 +2,8 @@
 
 A VueJs starter app integrated with [aws-amplify](https://github.com/aws/aws-amplify). **Please submit issues to the [aws-amplify](https://github.com/aws/aws-amplify/issues) repository**.
 
+<img src="docs/assets/img/aws-amplify-vue-sample.png" width="480px" />
+
 * [Getting Started](#getting-started)
 * [AWS Amplify Integration Explained](#aws-amplify-integration-explained)
   - [Setup AWS Amplify](#setup-aws-amplify)
