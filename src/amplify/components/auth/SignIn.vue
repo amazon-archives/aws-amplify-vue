@@ -46,6 +46,9 @@
     <div :style="theme.error" v-if="error">
       {{ error }}
     </div>
+      <span :style="theme.footerRight">
+        <a :style="theme.link" v-on:click="googleIt">Google</a>
+      </span>
   </div>
 </template>
 
@@ -53,6 +56,7 @@
 import { Auth, Logger, JS } from 'aws-amplify'
 import AmplifyStore from '../../AmplifyStore'
 import AmplifyTheme from '../../AmplifyTheme'
+import Vue from 'vue'
 
 const logger = new Logger('SignInComp');
 
@@ -72,6 +76,22 @@ export default {
     }
   },
   methods: {
+    googleIt: function(){
+ 
+    Vue.googleAuth().signIn(function (googleUser) { 
+        let response = window.gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse()
+        response.token = response.id_token
+        Auth.federatedSignIn('google',response, {}).then(user => {
+          logger.debug('sign in success', user);
+          AmplifyStore.commit('setUser', user);
+          return user
+        })
+      }, function (error) {
+         logger.debug('sign in fail', error);
+        console.log(error)
+      }
+      )
+    },
     signIn: function(event) {
       const that = this
       Auth.signIn(this.username, this.password)
