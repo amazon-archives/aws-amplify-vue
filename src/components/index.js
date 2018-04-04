@@ -14,9 +14,11 @@
 import Menu from './Menu'
 import Home from './Home'
 import Profile from './Profile'
+import Form from './Form'
 
 export {
   Menu,
   Home,
-  Profile
+  Profile,
+  Form
 }

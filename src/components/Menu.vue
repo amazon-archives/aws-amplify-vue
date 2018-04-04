@@ -16,6 +16,7 @@
     <div :style="navStyle.main">
       <a :style="navStyle.item" v-on:click="home">Home</a>
       <a :style="navStyle.item" v-on:click="notes">Notes</a>
+      <a :style="navStyle.item" v-on:click="form">Form</a>
     </div>
     <div :style="navStyle.right">
       <span :style="navStyle.greeting" v-if="!user">Please Sign In</span>
@@ -47,6 +48,9 @@ export default {
     },
     notes: function() {
         this.$router.push('/notes')
+    },
+    form: function() {
+        this.$router.push('/form')
     },
     profile: function() {
         this.$router.push('/profile')

@@ -28,7 +28,7 @@
       :theme="theme"
       v-if="userId"
     />
-  </div>
+  </div> 
 </template>
 
 <script>
