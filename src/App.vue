@@ -13,16 +13,16 @@
 
 <template>
   <div id="app">
-    <v-menu/>
+    <v-goMenu/> 
     <router-view/>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import Menu from '@/components/Menu'
+import goMenu from '@/components/goMenu'
 
-Vue.component('v-menu', Menu)
+Vue.component('v-goMenu', goMenu)
 
 export default {
   name: 'app'
