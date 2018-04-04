@@ -13,7 +13,7 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-import { Menu, Home, Profile, Form } from '@/components'
+import { goMenu, Home, Profile, Form } from '@/components'
 import { Notes } from '@/notes'
 
 import { AuthRouter, AuthFilter } from '../amplify'
@@ -38,9 +38,9 @@ const router = new Router({
       component: Form
     },
     {
-      path: '/menu',
-      name: 'Menu',
-      component: Menu
+      path: '/goMenu',
+      name: 'goMenu',
+      component: goMenu
     },
     {
       path: '/profile',

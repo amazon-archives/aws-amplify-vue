@@ -2,7 +2,7 @@
     <div>
         <h1>{{ msg }}</h1>
 
-        <v-container fluid>
+        <v-container fluid class=enabled>
             <v-switch 
                 :label="`${msgreturn.toString()}`" 
                 v-bind:style="{ color : savedColor }" 
@@ -28,7 +28,6 @@ export default {
         msgreturn: "Click to save",
         switch1: false,
         savedColor: "gray",
-
     }
   },
 
@@ -37,6 +36,7 @@ export default {
         setTimeout(function () { 
             this.msgreturn = "Change saved"
             this.savedColor = "green"
+            this.class = disabled
         }.bind(this), 1000)
         
       }
