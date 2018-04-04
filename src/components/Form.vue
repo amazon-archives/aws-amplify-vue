@@ -1,16 +1,21 @@
 <template>
     <div>
-        <h1>{{ msg }}</h1>
+        <h1>{{ txt }}</h1>
 
-        <v-container fluid class=enabled>
-            <v-switch 
-                :label="`${msgreturn.toString()}`" 
-                v-bind:style="{ color : savedColor }" 
+        <v-app>
+        <v-container fluid>
+            <v-switch v-if="!switch1"
+                :label="`${msgClick.toString()}`" 
                 v-model="switch1" 
                 v-on:click="toggle"
             ></v-switch>
+            <v-switch v-else
+                :label="`${msgClick.toString()}`" 
+                v-model="switch1" 
+                color="blue"
+            ></v-switch>
         </v-container>
-        
+        </v-app>
     </div>
   
 </template>
@@ -24,19 +29,17 @@ export default {
   name: 'Form',
   data () {
     return {
-        msg: "Sample form",
-        msgreturn: "Click to save",
-        switch1: true,
-        savedColor: "gray",
+        txt: "Sample form",
+        msgClick: "Click me",
+        mgsSaved: "Change saved",
+        switch1: false,
     }
   },
 
     methods: {
       toggle: function() {
         setTimeout(function () { 
-            this.msgreturn = "Change saved"
-            this.savedColor = "green"
-            this.class = disabled
+            alert("change saved")
         }.bind(this), 1000)
         
       }
