@@ -33,7 +33,7 @@ import { Auth, Hub } from 'aws-amplify'
 import { AmplifyStore, AmplifyTheme } from '../amplify'
 
 export default {
-  name: 'Menu',
+  name: 'goMenu',
   data () {
     return {
       navStyle: AmplifyTheme.nav
