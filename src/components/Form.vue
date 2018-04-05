@@ -26,7 +26,7 @@ export default {
     return {
         msg: "Sample form",
         msgreturn: "Click to save",
-        switch1: false,
+        switch1: true,
         savedColor: "gray",
     }
   },

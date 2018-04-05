@@ -12,18 +12,78 @@
  */
 
 <template>
-  <div :style="navStyle">
-    <div :style="navStyle.main">
-      <a :style="navStyle.item" v-on:click="home">Home</a>
-      <a :style="navStyle.item" v-on:click="notes">Notes</a>
-      <a :style="navStyle.item" v-on:click="form">Form</a>
-    </div>
-    <div :style="navStyle.right">
-      <span :style="navStyle.greeting" v-if="!user">Please Sign In</span>
-      <span :style="navStyle.greeting" v-if="user">{{user.username}}</span>
-      <a :style="navStyle.item" v-on:click="profile" v-if="user">Profile</a>
-      <a :style="navStyle.item" v-on:click="signOut" v-if="user">Sign Out</a>
-    </div>
+  <div>
+    <v-navigation-drawer
+      fixed
+      v-model="drawer"
+      app>
+
+      <v-list dense>
+         <v-toolbar-title>goPuff Admin </v-toolbar-title>
+          <v-spacer></v-spacer>
+        <v-list-tile @click="home" @click.stop="drawer = !drawer">
+          <v-list-tile-action>
+            <v-icon>fas fa-home</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Home</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile @click="form" @click.stop="drawer = !drawer">
+          <v-list-tile-action>
+            <v-icon>fas fa-sticky-note</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Form</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+
+        <v-divider></v-divider>
+        <v-list-tile @click="" @click.stop="drawer = !drawer">
+          <v-list-tile-action>
+            <v-icon>fas fa-info-circle</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Info</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-toolbar color="light-blue accent-3" dark fixed app>
+      <v-btn icon @click.stop="drawer = !drawer">
+        <v-icon>fas fa-bars</v-icon>
+      </v-btn>
+      <v-toolbar-title>goPuff Admin</v-toolbar-title>
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon>fas fa-search</v-icon>
+      </v-btn>
+
+      <v-menu offset-y transition="slide-y-transition">
+        <v-btn icon slot="activator">
+          <v-icon>fas fa-user-circle</v-icon>
+        </v-btn>
+        <v-list>
+          <v-list-tile @click="signOut">
+            <v-list-tile-title>
+              <v-icon>fas fa-sign-out-alt</v-icon> Sign out
+            </v-list-tile-title>
+          </v-list-tile>
+          <v-list-tile @click="profile">
+            <v-list-tile-title>
+              <v-icon>fas fa-user</v-icon> View profile
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
+
+      <v-btn icon>
+        <v-icon>fas fa-ellipsis-v</v-icon>
+      </v-btn>
+    </v-toolbar>
+    
   </div>
 </template>
 
@@ -36,8 +96,12 @@ export default {
   name: 'goMenu',
   data () {
     return {
-      navStyle: AmplifyTheme.nav
+      navStyle: AmplifyTheme.nav,
+      drawer: false
     }
+  },
+  props: {
+    source: String
   },
   computed: {
     user() { return AmplifyStore.state.user }
