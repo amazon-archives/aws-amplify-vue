@@ -13,31 +13,40 @@
 
 <template>
   <div id="app">
-    <v-goMenu/> 
-    <router-view/>
+    <v-app>
+      <v-goMenu/> 
+      <div class="menu-spacer"></div>
+      <router-view/>
+    </v-app>
+
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import goMenu from '@/components/goMenu'
+  import Vue from 'vue'
+  import goMenu from '@/components/goMenu'
 
-Vue.component('v-goMenu', goMenu)
+  Vue.component('v-goMenu', goMenu)
 
-export default {
-  name: 'app'
-}
+  export default {
+    name: 'app'
+  }
 </script>
 
 <style>
-body {
-  margin: 0
-}
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  .menu-spacer {
+    height: 70px;
+    width: 100%;
+  }
+
+  body {
+    margin: 0
+  }
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
 </style>

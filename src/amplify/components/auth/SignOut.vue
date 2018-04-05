@@ -13,9 +13,9 @@
 
 <template>
   <div :style="theme.form">
-    <div>Are you sure?</div>
+    <div>Are you sure you want sign out?</div>
     <div :style="theme.actionRow">
-        <button :style="theme.action" v-on:click="signOut">Sign Out</button>
+      <v-btn class="center" color="error" v-on:click="signOut">Sign Out</v-btn>
     </div>
     <div :style="theme.error" v-if="error">
       {{ error }}
@@ -52,3 +52,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .center {
+    width: 100%;
+  }
+</style>

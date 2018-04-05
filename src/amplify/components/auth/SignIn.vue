@@ -15,6 +15,7 @@
   <div :style="theme.form">
     <h1 :style="theme.header" v-if="!confirmView">Sign In</h1>
     <h1 :style="theme.header" v-if="confirmView">Confirm Sign In</h1>
+
     <div :style="theme.error" v-if="error">
         {{ error }}
     </div>
@@ -30,20 +31,16 @@ import { Auth, Logger, JS } from 'aws-amplify'
 import AmplifyStore from '../../AmplifyStore'
 import AmplifyTheme from '../../AmplifyTheme'
 import Vue from 'vue'
-
 const logger = new Logger('SignInComp');
-
 export default {
   name: 'SignIn',
   data () {
     return {
         username: '',
         password: '',
-
         user: null,
         confirmView: false,
         code: '',
-
         error: '',
         theme: AmplifyTheme
     }
@@ -82,12 +79,10 @@ export default {
           this.checkUser()
         })
         .catch(err => this.setError(err))
-
     },
     checkUser: function() {
       const user = this.user;
       if (!user) { return }
-
       Auth.verifiedContact(user)
         .then(data => {
           logger.debug('verify result', data);
@@ -124,5 +119,5 @@ export default {
     width: 50%;
     height: auto;
   }
- 
+
 </style>
