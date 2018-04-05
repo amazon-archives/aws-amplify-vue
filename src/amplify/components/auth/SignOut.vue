@@ -12,12 +12,12 @@
  */
 
 <template>
-  <div :style="theme.form">
+  <div>
     <div>Are you sure you want sign out?</div>
-    <div :style="theme.actionRow">
+    <div>
       <v-btn class="center" color="error" v-on:click="signOut">Sign Out</v-btn>
     </div>
-    <div :style="theme.error" v-if="error">
+    <div v-if="error">
       {{ error }}
     </div>
   </div>

@@ -12,14 +12,14 @@
  */
 
 <template>
-  <div :style="theme.form">
-    <h1 :style="theme.header" v-if="!confirmView">Sign In</h1>
-    <h1 :style="theme.header" v-if="confirmView">Confirm Sign In</h1>
+  <div>
+    <h1 v-if="!confirmView">Sign In</h1>
+    <h1 v-if="confirmView">Confirm Sign In</h1>
 
-    <div :style="theme.error" v-if="error">
+    <div v-if="error">
         {{ error }}
     </div>
-    <a :style="theme.link" v-on:click="googleIt">
+    <a v-on:click="googleIt">
       <img class="googlebtn" src="https://s3.amazonaws.com/gopuff/googleLogo.svg" onclick="this.src='https://s3.amazonaws.com/gopuff/googleLogoPressed.svg'">
     </a>
   </div>
