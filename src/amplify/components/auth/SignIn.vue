@@ -47,13 +47,14 @@ export default {
   },
   methods: {
     googleIt: function(){
- 
+    const t = this;
     Vue.googleAuth().signIn(function (googleUser) { 
         let response = window.gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse()
         response.token = response.id_token
         Auth.federatedSignIn('google',response, {}).then(user => {
           logger.debug('sign in success', user);
           AmplifyStore.commit('setUser', user);
+          t.$router.push('/#/'); //go home after successful sign in
           return user
         })
       }, function (error) {
