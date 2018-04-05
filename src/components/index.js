@@ -11,12 +11,14 @@
  * and limitations under the License.
  */
 
-import Menu from './Menu'
+import goMenu from './goMenu'
 import Home from './Home'
 import Profile from './Profile'
+import Form from './Form'
 
 export {
-  Menu,
+  goMenu,
   Home,
-  Profile
+  Profile,
+  Form
 }

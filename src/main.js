@@ -16,9 +16,32 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 
 import Amplify, { Auth, Logger } from 'aws-amplify'
 import aws_exports from './aws-exports'
+import GoogleAuth from 'vue-google-auth'
+import googleConf from './google-exports'
+
+Vue.use(Vuetify)
+
+Vue.use(GoogleAuth, {
+  apiKey: googleConf.apiKey,
+  clientId: googleConf.googleClientId,
+  scope: 'profile email'
+})
+Vue.googleAuth().load(loginStatusChanged)
+
+function loginStatusChanged (isSignedIn, user, GoogleAuth) {
+  if (isSignedIn) {
+    var profile = user.getBasicProfile()
+    var username = profile.getName()
+    console.log(username + ' signed in')
+  } else {
+    console.log('user not signed in')
+  }
+}
 
 Vue.config.productionTip = false
 
