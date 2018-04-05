@@ -7,6 +7,7 @@
                 :label="`${msg.toString()}`" 
                 v-model="switch1"
                 color="blue"
+                :disabled="loading"
             ></v-switch>
         </v-container>
         </v-app>
@@ -25,36 +26,36 @@ export default {
         return {
             txt: "Sample form",
             msg: "Click to save",
+            loading: false
         }
     },
     computed: {
         switch1: {
-            get () { // get the value of state and update the switch accordingly
+            get () {
                 return TestStore.state.autoApprove
             },
-            set (newValue) { // set the newValue to state
-                // return a promise
-                callUpdate()
-                .then(function(data) { // if resolve, continue on
+            set (newValue) {
+                this.loading = !this.loading;
+
+                callUpdate(newValue)
+                .then((data) => {
                     TestStore.commit('setParam', data)
                     console.log("return : " + data)
-                    alert("change saved")
+                    this.loading = !this.loading;
                 })
-                .catch(function(error) { // if reject, console the error
+                .catch((error) => {
                     console.log(error)
+                    this.loading = !this.loading;
                 })
+
             }   
         }
     }
 }
 
-var callUpdate = function() {
+var callUpdate = function(newValue) {
     return new Promise(function(resolve, reject) {
-        // evaluate data or whatever
-        // this could be either resolve or reject
-        // to simplify just set a time out for this
-        // and return the value 'true'
-        setTimeout(resolve, 2000, true);
+        setTimeout(resolve, 2000, newValue);
     })
 }
 </script>

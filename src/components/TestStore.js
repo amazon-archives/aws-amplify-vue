@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    autoApprove : false
+    autoApprove : true
   },
   mutations: {
     setParam(state, autoApprove) {
