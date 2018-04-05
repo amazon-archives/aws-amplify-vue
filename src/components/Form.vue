@@ -18,7 +18,7 @@
 
 <script>
 
-import { AmplifyStore, AmplifyTheme } from '../amplify'
+import { AmplifyStore } from '../amplify'
 
 export default {
   name: 'Form',

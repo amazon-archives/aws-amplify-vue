@@ -29,7 +29,6 @@
 <script>
 import { Auth, Logger, JS } from 'aws-amplify'
 import AmplifyStore from '../../AmplifyStore'
-import AmplifyTheme from '../../AmplifyTheme'
 import Vue from 'vue'
 const logger = new Logger('SignInComp');
 export default {
@@ -41,8 +40,7 @@ export default {
         user: null,
         confirmView: false,
         code: '',
-        error: '',
-        theme: AmplifyTheme
+        error: ''
     }
   },
   methods: {

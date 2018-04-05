@@ -11,17 +11,16 @@
  * and limitations under the License.
  */
 
-import AmplifyTheme from './AmplifyTheme'
 
 const AuthView = {
   template: `
-    <div :style="theme.container">
+    <div>
       <router-view></router-view>
     </div>
   `,
   data: () => {
     return {
-        theme: AmplifyTheme
+        
     }
   }
 }
