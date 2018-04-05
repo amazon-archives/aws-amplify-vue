@@ -25,7 +25,6 @@
 
 <script>
 import { Auth, Logger, JS } from 'aws-amplify'
-import AmplifyTheme from '../../AmplifyTheme'
 
 const logger = new Logger('SignOutComp');
 
@@ -33,8 +32,7 @@ export default {
   name: 'SignOut',
   data () {
     return {
-        error: '',
-        theme: AmplifyTheme
+        error: '' 
     }
   },
   methods: {

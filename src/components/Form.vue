@@ -17,7 +17,6 @@
 
 <script>
 
-import { AmplifyTheme } from '../amplify'
 import TestStore from './TestStore'
 
 export default {

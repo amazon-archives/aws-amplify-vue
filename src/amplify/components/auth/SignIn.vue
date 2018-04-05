@@ -29,7 +29,6 @@
 <script>
 import { Auth, Logger, JS } from 'aws-amplify'
 import AmplifyStore from '../../AmplifyStore'
-import AmplifyTheme from '../../AmplifyTheme'
 import Vue from 'vue'
 const logger = new Logger('SignInComp');
 export default {
@@ -41,19 +40,19 @@ export default {
         user: null,
         confirmView: false,
         code: '',
-        error: '',
-        theme: AmplifyTheme
+        error: ''
     }
   },
   methods: {
     googleIt: function(){
- 
+    const t = this;
     Vue.googleAuth().signIn(function (googleUser) { 
         let response = window.gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse()
         response.token = response.id_token
         Auth.federatedSignIn('google',response, {}).then(user => {
           logger.debug('sign in success', user);
           AmplifyStore.commit('setUser', user);
+          t.$router.push('/#/'); //go home after successful sign in
           return user
         })
       }, function (error) {

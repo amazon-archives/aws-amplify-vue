@@ -30,30 +30,10 @@ const AuthRouter = {
       component: Components.SignIn
     },
     {
-      path: 'signUp',
-      name: 'auth_SignUp',
-      component: Components.SignUp
-    },
-    {
       path: 'signOut',
       name: 'auth_SignOut',
       component: Components.SignOut
     },
-    {
-      path: 'confirmSignUp',
-      name: 'auth_ConfirmSignUp',
-      component: Components.ConfirmSignUp
-    },
-    {
-      path: 'verifyContact',
-      name: 'auth_VerifyContact',
-      component: Components.VerifyContact
-    },
-    {
-      path: 'forgotPassword',
-      name: 'auth_ForgotPassword',
-      component: Components.ForgotPassword
-    }
   ]
 }
 

@@ -90,14 +90,13 @@
 <script>
 import { Auth, Hub } from 'aws-amplify'
 
-import { AmplifyStore, AmplifyTheme } from '../amplify'
+import { AmplifyStore } from '../amplify'
 
 export default {
   name: 'goMenu',
   data () {
     return {
-      navStyle: AmplifyTheme.nav,
-      drawer: false
+      drawer: null
     }
   },
   props: {
