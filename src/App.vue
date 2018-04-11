@@ -15,7 +15,6 @@
   <div id="app">
     <v-app>
       <v-goMenu/> 
-      <div class="menu-spacer"></div>
       <router-view/>
     </v-app>
 
@@ -34,11 +33,6 @@
 </script>
 
 <style>
-  .menu-spacer {
-    height: 70px;
-    width: 100%;
-  }
-
   body {
     margin: 0
   }

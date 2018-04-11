@@ -12,8 +12,8 @@
  */
 
 <template>
-  <div >
-    Profile
+  <div>
+    <img :src="userPic" class="prof-img">
   </div> 
 </template>
 
@@ -28,12 +28,7 @@ export default {
   name: 'Profile',
   data () {
     return {
-      fields: [
-        { type: 'string', name: 'firstName', label: 'FirstName' },
-        { type: 'string', name: 'lastName', label: 'LastName' },
-        { type: 'lineBreak' },
-        { type: 'string', name: 'nickname', label: 'Nickname' }
-      ]
+      userPic: AmplifyStore.state.userInfo.Paa
     }
   },
   computed: {
@@ -42,3 +37,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .prof-img {
+    border-radius: 50%; 
+  }
+</style>

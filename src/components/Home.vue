@@ -13,17 +13,18 @@
 
 <template>
   <div >
-      Home!
+      Hello, {{userName}}
+
   </div>
 </template>
 
 <script>
-
+import { AmplifyStore } from '../amplify'
 export default {
   name: 'Home',
   data () {
     return {
-      
+      userName: AmplifyStore.state.userInfo.ofa
     }
   }
 }

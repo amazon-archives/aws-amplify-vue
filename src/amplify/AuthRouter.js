@@ -38,11 +38,12 @@ const AuthRouter = {
 }
 
 const AuthFilter = (to, from, next) => {
-  logger.debug('before routing ', to, from)
+  //logger.debug('before routing ', to, from)
   Auth.currentAuthenticatedUser()
     .then(user => {
-      logger.debug('...has user', user)
+      //logger.debug('...has user', user)
       AmplifyStore.commit('setUser', user)
+      AmplifyStore.commit('loadUserInfo')
       Auth.currentCredentials()
         .then(credentials => {
           AmplifyStore.commit('setUserId', credentials.identityId)
@@ -51,7 +52,7 @@ const AuthFilter = (to, from, next) => {
       next()
     })
     .catch(err => {
-      logger.debug('...no user', err)
+      //logger.debug('...no user', err)
       AmplifyStore.commit('setUser', null)
       if (!to.name.startsWith('auth')) {
         next('/auth/signIn')

@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright 2017-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with
@@ -31,10 +31,27 @@
         </v-list-tile>
         <v-list-tile @click="form" @click.stop="drawer = !drawer">
           <v-list-tile-action>
-            <v-icon>fas fa-sticky-note</v-icon>
+            <v-icon>fas fa-file-alt</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>Form</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+          <v-list-tile @click="" @click.stop="drawer = !drawer">
+          <v-list-tile-action>
+            <v-icon>fas fa-money-bill-alt</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Cash Sheets</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        </v-list-tile>
+          <v-list-tile @click="" @click.stop="drawer = !drawer">
+          <v-list-tile-action>
+            <v-icon>fas fa-book</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Directory</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
 
@@ -44,7 +61,7 @@
             <v-icon>fas fa-info-circle</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>Info</v-list-tile-title>
+            <v-list-tile-title>FAQ</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -83,7 +100,8 @@
         <v-icon>fas fa-ellipsis-v</v-icon>
       </v-btn>
     </v-toolbar>
-    
+
+    <div class="menu-spacer"></div>
   </div>
 </template>
 
@@ -92,11 +110,20 @@ import { Auth, Hub } from 'aws-amplify'
 
 import { AmplifyStore } from '../amplify'
 
+function getImg() {
+  if(AmplifyStore.state.userInfo.Paa.length < 5) {
+    return "http://www.thelawofattraction.org/wp-content/uploads/2013/05/James_Allen-96x96.jpg"
+  } else {
+    return AmplifyStore.state.userInfo.Paa
+  }
+}
+
 export default {
   name: 'goMenu',
   data () {
     return {
-      drawer: null
+      drawer: null,
+      userImg: getImg()
     }
   },
   props: {
@@ -124,3 +151,16 @@ export default {
   }
 }
 </script>
+
+<style>
+  .menu-spacer {
+    height: 70px;
+    width: 100%;
+  }
+
+  .user-img {
+    border-radius: 50%; 
+    width: 80%;
+    height: 80%;
+  }
+</style>

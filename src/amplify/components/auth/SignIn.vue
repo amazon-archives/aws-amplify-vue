@@ -50,8 +50,15 @@ export default {
         let response = window.gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse()
         response.token = response.id_token
         Auth.federatedSignIn('google',response, {}).then(user => {
+          console.log("~~~>", user);
           logger.debug('sign in success', user);
           AmplifyStore.commit('setUser', user);
+          //get user info
+          var Auth = window.gapi.auth2.getAuthInstance();
+          var userInfo = Auth.currentUser.get();
+          console.log('->', userInfo.w3);
+          AmplifyStore.commit('setUserInfo', userInfo.w3);
+
           t.$router.push('/#/'); //go home after successful sign in
           return user
         })
