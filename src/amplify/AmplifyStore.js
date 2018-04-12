@@ -20,6 +20,7 @@ const store = new Vuex.Store({
   state: {
     user: null,
     userId: null,
+    userInfo: null,   
     userVerification: []
   },
   mutations: {
@@ -31,6 +32,13 @@ const store = new Vuex.Store({
     },
     setUserVerification(state, data) {
       state.userVerification = data
+    },
+    setUserInfo(state, info) {
+      state.userInfo = info
+      localStorage.setItem('userInfo', JSON.stringify(info));
+    },
+    loadUserInfo(state) {
+      state.userInfo = JSON.parse(localStorage.getItem('userInfo'));
     }
   }
 })

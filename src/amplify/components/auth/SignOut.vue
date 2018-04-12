@@ -12,12 +12,12 @@
  */
 
 <template>
-  <div :style="theme.form">
-    <div>Are you sure?</div>
-    <div :style="theme.actionRow">
-        <button :style="theme.action" v-on:click="signOut">Sign Out</button>
+  <div>
+    <div>Are you sure you want sign out?</div>
+    <div>
+      <v-btn class="center" color="error" v-on:click="signOut">Sign Out</v-btn>
     </div>
-    <div :style="theme.error" v-if="error">
+    <div v-if="error">
       {{ error }}
     </div>
   </div>
@@ -25,7 +25,6 @@
 
 <script>
 import { Auth, Logger, JS } from 'aws-amplify'
-import AmplifyTheme from '../../AmplifyTheme'
 
 const logger = new Logger('SignOutComp');
 
@@ -33,8 +32,7 @@ export default {
   name: 'SignOut',
   data () {
     return {
-        error: '',
-        theme: AmplifyTheme
+        error: '' 
     }
   },
   methods: {
@@ -52,3 +50,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .center {
+    width: 100%;
+  }
+</style>

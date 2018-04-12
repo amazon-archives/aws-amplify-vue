@@ -13,31 +13,34 @@
 
 <template>
   <div id="app">
-    <v-menu/>
-    <router-view/>
+    <v-app>
+      <v-goMenu/> 
+      <router-view/>
+    </v-app>
+
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import Menu from '@/components/Menu'
+  import Vue from 'vue'
+  import goMenu from '@/components/goMenu'
 
-Vue.component('v-menu', Menu)
+  Vue.component('v-goMenu', goMenu)
 
-export default {
-  name: 'app'
-}
+  export default {
+    name: 'app'
+  }
 </script>
 
 <style>
-body {
-  margin: 0
-}
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  body {
+    margin: 0
+  }
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
 </style>

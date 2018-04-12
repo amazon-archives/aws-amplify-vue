@@ -30,39 +30,20 @@ const AuthRouter = {
       component: Components.SignIn
     },
     {
-      path: 'signUp',
-      name: 'auth_SignUp',
-      component: Components.SignUp
-    },
-    {
       path: 'signOut',
       name: 'auth_SignOut',
       component: Components.SignOut
     },
-    {
-      path: 'confirmSignUp',
-      name: 'auth_ConfirmSignUp',
-      component: Components.ConfirmSignUp
-    },
-    {
-      path: 'verifyContact',
-      name: 'auth_VerifyContact',
-      component: Components.VerifyContact
-    },
-    {
-      path: 'forgotPassword',
-      name: 'auth_ForgotPassword',
-      component: Components.ForgotPassword
-    }
   ]
 }
 
 const AuthFilter = (to, from, next) => {
-  logger.debug('before routing ', to, from)
+  //logger.debug('before routing ', to, from)
   Auth.currentAuthenticatedUser()
     .then(user => {
-      logger.debug('...has user', user)
+      //logger.debug('...has user', user)
       AmplifyStore.commit('setUser', user)
+      AmplifyStore.commit('loadUserInfo')
       Auth.currentCredentials()
         .then(credentials => {
           AmplifyStore.commit('setUserId', credentials.identityId)
@@ -71,7 +52,7 @@ const AuthFilter = (to, from, next) => {
       next()
     })
     .catch(err => {
-      logger.debug('...no user', err)
+      //logger.debug('...no user', err)
       AmplifyStore.commit('setUser', null)
       if (!to.name.startsWith('auth')) {
         next('/auth/signIn')
