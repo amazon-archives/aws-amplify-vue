@@ -10,20 +10,20 @@
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
  * and limitations under the License.
  */
+<template>
+  <div :style="theme.container">
+    <router-view></router-view>
+  </div>
+</template>
 
-import AmplifyTheme from './AmplifyTheme'
-
-const AuthView = {
-  template: `
-    <div :style="theme.container">
-      <router-view></router-view>
-    </div>
-  `,
-  data: () => {
-    return {
+<script>
+  import { AmplifyTheme } from '../amplify'
+  export default {
+    name: 'AuthView',
+    data () {
+      return {
         theme: AmplifyTheme
+      }
     }
   }
-}
-
-export default AuthView
+</script>.
