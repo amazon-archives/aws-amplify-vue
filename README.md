@@ -21,14 +21,14 @@ $ cd aws-amplify-vue-sample
 $ npm install
 ```
 
-2. Copy your `aws-exports` file into the src directory, or intialize a new AWS Mobile project:
+2. Copy your `aws-exports` file into the src directory, or intialize a new [AWS Amplify CLI](https://github.com/aws-amplify/amplify-cli) project:
 
 ```bash
-$ npm install -g awsmobile-cli
-$ awsmobile init
-$ awsmobile user-signin enable
-$ awsmobile user-files enable
-$ awsmobile push
+$ npm install -g aws-amplify/cli
+$ amplify init
+$ amplify add auth
+$ amplify add storage
+$ amplify push
 ```
 
 3. Start the project    
