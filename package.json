@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "aws-amplify": "^0.2.10",
+    "aws-amplify-vue": "^0.1.1-beta.4",
     "aws-sdk": "^2.209.0",
     "e": "0.0.4",
     "fsts": "^0.0.39",

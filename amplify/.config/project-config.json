@@ -1,0 +1,20 @@
+{
+    "projectName": "vuesampleapp",
+    "projectPath": "/Users/dnnoyes/aws-amplify-vue-sample-app",
+    "defaultEditor": "code",
+    "frontendHandler": {
+        "javascript": "/Users/dnnoyes/amplify-cli/packages/amplify-cli/node_modules/amplify-frontend-javascript"
+    },
+    "javascript": {
+        "framework": "vue",
+        "config": {
+            "SourceDir": "src",
+            "DistributionDir": "build",
+            "BuildCommand": "npm run-script build",
+            "StartCommand": "npm run-script serve"
+        }
+    },
+    "providers": {
+        "awscloudformation": "/Users/dnnoyes/amplify-cli/packages/amplify-cli/node_modules/amplify-provider-awscloudformation"
+    }
+}

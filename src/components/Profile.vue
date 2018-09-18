@@ -12,48 +12,85 @@
  */
 
 <template>
-  <div :style="theme.container">
-    <a-photo-picker
-      :defSrc="'/static/avatar.png'"
-      :path="'avatars/' + userId"
-      :theme="theme"
-      v-if="userId"
-    />
-
-    <div v-if="user">{{user.username}}</div>
-
-    <a-simple-form
-      :path="'profiles/' + userId"
-      :fields="fields"
-      :theme="theme"
-      v-if="userId"
-    />
+  <div class="container">
+    <h1 v-if="user">{{user.username}}'s profile</h1>
+    <div >
+      <profile-form
+        :user="user"
+        :fields="fields"
+        v-if="user"
+      />
+    </div>
+    <section >
+      <article class="message" :class="profilePicAccordion">
+        <div class="message-header" @click="toggleAccordion('profilePic')">
+          Multifactor Authentication <div class="arrow"> &nbsp; ></div>    
+        </div>
+        <div class="message-body">
+          <div class="message-content">
+            <amplify-set-mfa ></amplify-set-mfa>
+          </div>
+        </div>
+      </article>
+      <article class="message" :class="mfaAccordion">
+        <div class="message-header" @click="toggleAccordion('mfa')">
+          Profile Pic <div class="arrow"> &nbsp; ></div>    
+        </div>
+        <div class="message-body">
+          <div class="message-content">
+            <amplify-photo-picker
+              :defSrc="'/static/avatar.png'"
+              :path="'avatars/' + user"
+            />
+          </div>
+        </div>
+      </article>
+    </section>
   </div>
 </template>
 
 <script>
 import { Auth, Storage, Logger } from 'aws-amplify'
 
-import { AmplifyStore, AmplifyTheme } from '../amplify'
+
+import AmplifyStore from '../store/store';
 
 const logger = new Logger('Profile');
 
 export default {
   name: 'Profile',
+
   data () {
     return {
+      profilePic: false,
+      mfa: false,
       fields: [
-        { type: 'string', name: 'firstName', label: 'FirstName' },
-        { type: 'string', name: 'lastName', label: 'LastName' },
-        { type: 'lineBreak' },
-        { type: 'string', name: 'nickname', label: 'Nickname' }
+        { type: 'string', name: 'email', label: 'Email' },
+        { type: 'string', name: 'phone_number', label: 'Phone Number' }
       ],
-      theme: AmplifyTheme
+    }
+  },
+  methods: {
+    toggleAccordion: function(el) {
+      this[el] = !this[el]
     }
   },
   computed: {
     user: function() { return AmplifyStore.state.user },
-    userId: function() { return AmplifyStore.state.userId }
+    profilePicAccordion: function() {
+      return {
+        'is-closed': !this.profilePic,
+        'is-primary': this.profilePic,
+        'is-dark': !this.profilePic
+      };
+    },
+    mfaAccordion: function() {
+      return {
+        'is-closed': !this.mfa,
+        'is-primary': this.mfa,
+        'is-dark': !this.mfa
+      };
+    }
   }
 }
 </script>

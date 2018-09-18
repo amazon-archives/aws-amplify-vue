@@ -1,0 +1,51 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "vuesampleapp-20180917130244-authRole",
+			"UnauthRoleArn": "arn:aws:iam::444407295970:role/vuesampleapp-20180917130244-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::444407295970:role/vuesampleapp-20180917130244-authRole",
+			"Region": "us-west-2",
+			"DeploymentBucketName": "vuesampleapp-20180917130244-deployment",
+			"UnauthRoleName": "vuesampleapp-20180917130244-unauthRole",
+			"StackName": "vuesampleapp-20180917130244",
+			"StackId": "arn:aws:cloudformation:us-west-2:444407295970:stack/vuesampleapp-20180917130244/a43c1240-bab4-11e8-a8da-0aebe7c44e46"
+		}
+	},
+	"auth": {
+		"cognito52fa6dd1": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/vuesampleapp-20180917130244-deployment/amplify-cfn-templates/auth/cognito52fa6dd1-cloudformation-template.yml",
+				"logicalId": "authcognito52fa6dd1"
+			},
+			"lastPushTimeStamp": "2018-09-17T20:06:37.409Z",
+			"output": {
+				"AppClientSecret": "1vbcriatsb1k1ulldc39qarg54i1cjni69fovumgompmrkbu65jp",
+				"UserPoolId": "us-west-2_ORYOBxyxi",
+				"AppClientIDWeb": "4f9j7a2hrsl4tunoduhb4krj2s",
+				"AppClientID": "3ptbu7jb80koco49r4f35ch9le",
+				"IdentityPoolId": "us-west-2:2d90b601-014c-44ae-a229-5736714f5a6c",
+				"IdentityPoolName": "cognito52fa6dd1_identitypool_52fa6dd1",
+				"UserPoolName": "cognito52fa6dd1_userpool_52fa6dd1"
+			},
+			"lastPushDirHash": "Szpx+1CKvpBDfiRfmHE6hNJM7Xs="
+		}
+	},
+	"storage": {
+		"vuesampleS3": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/vuesampleapp-20180917130244-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"logicalId": "storagevuesampleS3"
+			},
+			"lastPushTimeStamp": "2018-09-17T20:06:37.409Z",
+			"output": {
+				"BucketName": "vuesampleappcb0394ce1a7748ce9305839e51b1344e",
+				"Region": "us-west-2"
+			},
+			"lastPushDirHash": "epCJxOHi8809/5QBlSr8CoK42OE="
+		}
+	}
+}
