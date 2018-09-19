@@ -1,6 +1,7 @@
 node_modules/**
 /dist/
 src/aws-exports.js
+.amplifyrc
 .awsmobilejs
 /amplify/
 /build/
@@ -9,6 +10,7 @@ yarn-debug.log*
 yarn-error.log*
 .DS_Store
 .idea
+.github/
 .vscode
 *.suo
 *.ntvs*
