@@ -12,7 +12,7 @@
  */
 
 <template>
-  <div class="container centered">
+  <div class="container">
     <h1 v-if="user">{{user.username}}'s profile</h1>
     <div >
       <profile-form
@@ -28,7 +28,7 @@
         </div>
         <div class="message-body">
           <div class="message-content">
-            <amplify-set-mfa v-bind:mfaConfig="mfaConfig"></amplify-set-mfa>
+            <amplify-set-mfa></amplify-set-mfa>
           </div>
         </div>
       </article>

@@ -38,6 +38,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  text-align:center;
 }
 
 h4 {
@@ -52,11 +53,11 @@ h5 {
   background: #f8f8f8
 }
 .container {
-  text-align: left;
+  text-align: center;
   margin-left: 30px;
 }
-.centered {
-  text-align: center;
+.shifted {
+  text-align: left;
 }
 section {
   margin-top: 30px;
@@ -128,12 +129,12 @@ inputRow {
   color: #fff;
   padding: 1em;
 }
-.nav >.item {
+.item {
   font-weight: 500;
   padding: 0 0.5em;
   cursor: pointer;
 }
-.nav >.greeting {
+.nav > .greeting {
   font-weight: 500;
   color: #000;
   padding: 0 0.5em;

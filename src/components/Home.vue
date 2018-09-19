@@ -12,7 +12,7 @@
  */
 
 <template>
-  <div class="container">
+  <div class="container shifted">
     <h1 class="h1">
       AWS Amplify Vue Sample
     </h1>
