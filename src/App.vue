@@ -14,7 +14,7 @@
 <template>
   <div id="app">
     <v-menu/>
-    <router-view data="hi"/>
+    <router-view/>
   </div>
 </template>
 
