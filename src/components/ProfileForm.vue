@@ -19,7 +19,6 @@
         <input
           class="input"
           v-model="user[field.name]"
-         
         />
       </div>
       <div class="lineBreak" v-if="field.type === 'lineBreak'"></div>

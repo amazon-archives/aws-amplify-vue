@@ -45,7 +45,7 @@ import Vue from 'vue'
 import { Logger } from 'aws-amplify'
 import { JS } from 'fsts'
 
-import { AmplifyStore } from '../../amplify'
+import AmplifyStore from '../../store/store'
 
 import NotesStore from './persist'
 import NotesTheme from '../NotesTheme'

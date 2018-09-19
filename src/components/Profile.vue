@@ -38,10 +38,8 @@
         </div>
         <div class="message-body">
           <div class="message-content">
-            <amplify-photo-picker
-              :defSrc="'/static/avatar.png'"
-              :path="'avatars/' + user"
-            />
+            <amplify-photo-picker v-bind:photoPickerConfig="photoPickerConfig"/>
+            <amplify-s3-image :imagePath="imagePath" />
           </div>
         </div>
       </article>
@@ -55,14 +53,20 @@ import { Auth, Storage, Logger } from 'aws-amplify'
 
 import AmplifyStore from '../store/store';
 
-const logger = new Logger('Profile');
 
 export default {
   name: 'Profile',
 
-  data () {
+  data:  () => {
     return {
       profilePic: false,
+      imagePath: `${AmplifyStore.state.user.username}/avatar`,
+      photoPickerConfig: {
+        header: 'Upload Profile Pic',
+        accept: 'image/*',
+        path: `${AmplifyStore.state.user.username}/`,
+        defaultName: 'avatar'
+      },
       mfa: false,
       fields: [
         { type: 'string', name: 'email', label: 'Email' },
@@ -76,7 +80,9 @@ export default {
     }
   },
   computed: {
-    user: function() { return AmplifyStore.state.user },
+    user: function() { 
+      return AmplifyStore.state.user 
+    },
     profilePicAccordion: function() {
       return {
         'is-closed': !this.profilePic,

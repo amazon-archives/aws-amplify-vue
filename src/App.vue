@@ -39,17 +39,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-h1 {
-  font-weight: 400;
-} 
-h2 {
-  font-weight: 400;
-  text-align: left;
-}
-h3 {
-  font-weight: 400;
-  text-align: left;
-}
+
 h4 {
   font-weight: 400;
   text-align: left;
@@ -152,6 +142,14 @@ inputRow {
   font-size: 0.8em;
 }
 
+.avatar {
+  max-height: 150px;
+}
+
+.avatar-pic {
+  max-height: 100px;
+}
+
 /* accordion */
 .message {
   max-width: 500px;
@@ -165,7 +163,7 @@ inputRow {
 
 .message-body   {
   padding: 0;
-  max-height: 30em;
+  max-height: 50em;
   width: 100%;
   overflow: hidden;
   transition: 0.3s ease all;
