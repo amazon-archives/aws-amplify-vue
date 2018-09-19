@@ -56,58 +56,6 @@ import aws_exports from './aws-exports'
 Amplify.configure(aws_exports)
 ```
 
-To have a quick test of the library, we added this piece of code.
-
-```js
-Amplify.Logger.LOG_LEVEL = 'DEBUG' // to show detailed logs from Amplify library
-
-const logger = new Logger('main')
-
-Auth.currentUserInfo()
-  .then(user => logger.debug(user))
-  .catch(err => logger.debug(err))
-```
-
-### Auth Routing
-
-There are two major auth routing concerns in an application, 1) Auth UI routing; 2) Access Control to application.
-
-#### Auth UI routing
-
-Just add AuthRouter to router.
-
-```js
-import { AuthRouter } from '../amplify'
-
-Vue.use(Router)
-
-const router = new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-
-    ...
-
-    AuthRouter
-  ]
-})
-
-```
-
-#### Access Control
-
-Just add AuthFilter to router
-
-```js
-import { AuthFilter } from '../amplify'
-
-...
-
-router.beforeEach(AuthFilter);
-```
 
 ### Storage Components
 
