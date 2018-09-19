@@ -12,7 +12,7 @@
  */
 
 <template>
-  <div class="container">
+  <div class="container centered">
     <h1 v-if="user">{{user.username}}'s profile</h1>
     <div >
       <profile-form
@@ -28,7 +28,7 @@
         </div>
         <div class="message-body">
           <div class="message-content">
-            <amplify-set-mfa ></amplify-set-mfa>
+            <amplify-set-mfa v-bind:mfaConfig="mfaConfig"></amplify-set-mfa>
           </div>
         </div>
       </article>
@@ -65,7 +65,6 @@ export default {
         header: 'Upload Profile Pic',
         accept: 'image/*',
         path: `${AmplifyStore.state.user.username}/`,
-        defaultName: 'avatar'
       },
       mfa: false,
       fields: [

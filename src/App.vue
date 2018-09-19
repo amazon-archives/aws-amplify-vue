@@ -52,7 +52,11 @@ h5 {
   background: #f8f8f8
 }
 .container {
-  text-align: center
+  text-align: left;
+  margin-left: 30px;
+}
+.centered {
+  text-align: center;
 }
 section {
   margin-top: 30px;
