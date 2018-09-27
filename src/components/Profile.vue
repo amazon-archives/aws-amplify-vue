@@ -12,48 +12,102 @@
  */
 
 <template>
-  <div :style="theme.container">
-    <a-photo-picker
-      :defSrc="'/static/avatar.png'"
-      :path="'avatars/' + userId"
-      :theme="theme"
-      v-if="userId"
-    />
-
-    <div v-if="user">{{user.username}}</div>
-
-    <a-simple-form
-      :path="'profiles/' + userId"
-      :fields="fields"
-      :theme="theme"
-      v-if="userId"
-    />
+  <div class="container">
+    <h1 v-if="user">{{user.username}}'s profile</h1>
+    <div >
+      <profile-form
+        :user="user"
+        :fields="fields"
+        v-if="user"
+      />
+    </div>
+    <section >
+      <article class="message" :class="mfaAccordion">
+        <div class="message-header" @click="toggleAccordion('mfa')">
+          Multifactor Authentication <div class="arrow"> &nbsp; ></div>    
+        </div>
+        <div class="message-body">
+          <div class="message-content">
+            <amplify-set-mfa v-bind:mfaConfig="mfaConfig"></amplify-set-mfa>
+          </div>
+        </div>
+      </article>
+      <article class="message" :class="profilePicAccordion">
+        <div class="message-header" @click="toggleAccordion('profilePic')">
+          Profile Pic <div class="arrow"> &nbsp; ></div>    
+        </div>
+        <div class="message-body">
+          <div class="message-content">
+            <amplify-photo-picker v-bind:photoPickerConfig="photoPickerConfig"/>
+            <amplify-s3-image :imagePath="imagePath" />
+          </div>
+        </div>
+      </article>
+    </section>
   </div>
 </template>
 
 <script>
 import { Auth, Storage, Logger } from 'aws-amplify'
 
-import { AmplifyStore, AmplifyTheme } from '../amplify'
 
-const logger = new Logger('Profile');
+import AmplifyStore from '../store/store';
+
 
 export default {
   name: 'Profile',
-  data () {
+
+  data:  () => {
+    const that = this;
     return {
+      profilePic: false,
+      imagePath: `${AmplifyStore.state.user.username}/avatar`,
+      photoPickerConfig: {
+        header: 'Upload Profile Pic',
+        accept: 'image/*',
+        path: `${AmplifyStore.state.user.username}/`,
+        defaultName: 'avatar'
+      },
+      mfa: false,
       fields: [
-        { type: 'string', name: 'firstName', label: 'FirstName' },
-        { type: 'string', name: 'lastName', label: 'LastName' },
-        { type: 'lineBreak' },
-        { type: 'string', name: 'nickname', label: 'Nickname' }
+        { type: 'string', name: 'email', label: 'Email' },
+        { type: 'string', name: 'phone_number', label: 'Phone Number' }
       ],
-      theme: AmplifyTheme
     }
   },
+  methods: {
+    toggleAccordion: function(el) {
+      this[el] = !this[el]
+    },
+  },
   computed: {
-    user: function() { return AmplifyStore.state.user },
-    userId: function() { return AmplifyStore.state.userId }
+    mfaConfig: function() {
+      let that = this;
+      return {
+        mfaDescription: 'My app\'s mfa description!!',
+        mfaTypes: ['TOTP', 'SNS', 'None'],
+        cancelHandler: function() {
+          that.toggleAccordion('mfa')
+        },
+      }
+    },
+    user: function() { 
+      return AmplifyStore.state.user 
+    },
+    profilePicAccordion: function() {
+      return {
+        'is-closed': !this.profilePic,
+        'is-primary': this.profilePic,
+        'is-dark': !this.profilePic
+      };
+    },
+    mfaAccordion: function() {
+      return {
+        'is-closed': !this.mfa,
+        'is-primary': this.mfa,
+        'is-dark': !this.mfa
+      };
+    }
   }
 }
 </script>

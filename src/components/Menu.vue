@@ -12,34 +12,32 @@
  */
 
 <template>
-  <div :style="navStyle">
-    <div :style="navStyle.main">
-      <a :style="navStyle.item" v-on:click="home">Home</a>
-      <a :style="navStyle.item" v-on:click="notes">Notes</a>
+  <div class="nav">
+    <div class="main">
+      <a class="item" v-on:click="home">Home</a>
+      <a class="item" v-on:click="notes">Notes</a>
     </div>
-    <div :style="navStyle.right">
-      <span :style="navStyle.greeting" v-if="!user">Please Sign In</span>
-      <span :style="navStyle.greeting" v-if="user">{{user.username}}</span>
-      <a :style="navStyle.item" v-on:click="profile" v-if="user">Profile</a>
-      <a :style="navStyle.item" v-on:click="signOut" v-if="user">Sign Out</a>
+    <div class="right">
+      <a class="item" v-on:click="profile" v-if="user">Profile</a>
+      <amplify-sign-out v-if="user"></amplify-sign-out>
     </div>
   </div>
 </template>
 
 <script>
-import { Auth, Hub } from 'aws-amplify'
+import { Auth, Hub } from 'aws-amplify';
+import AmplifyStore from '../store/store';
 
-import { AmplifyStore, AmplifyTheme } from '../amplify'
 
 export default {
   name: 'Menu',
   data () {
-    return {
-      navStyle: AmplifyTheme.nav
-    }
+    return {}
   },
   computed: {
-    user() { return AmplifyStore.state.user }
+    user() { 
+      return AmplifyStore.state.user
+    }
   },
   methods: {
     home: function() {
@@ -57,3 +55,5 @@ export default {
   }
 }
 </script>
+
+
