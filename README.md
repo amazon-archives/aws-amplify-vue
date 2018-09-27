@@ -41,7 +41,7 @@ Check http://localhost:8080/
 
 ## AWS Amplify Integration Explained
 
-This sample demostrate some of the AWS Amplify integration with VueJs. Most of the Amplify logics are contained inside `src/amplify` folder.
+This sample demostrates some of the AWS Amplify integration with VueJs. Most of the Amplify logics are contained inside `src/amplify` folder.
 
 ### Setup AWS Amplify
 
