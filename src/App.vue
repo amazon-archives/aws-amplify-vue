@@ -20,7 +20,7 @@
 
 <script>
 import Vue from 'vue'
-import Menu from '@/components/Menu'
+import Menu from '@/components/Menu';
 
 Vue.component('v-menu', Menu)
 
@@ -31,7 +31,8 @@ export default {
 
 <style>
 body {
-  margin: 0
+  margin: 0;
+  background-color: white;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

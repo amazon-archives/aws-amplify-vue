@@ -22,18 +22,18 @@
       />
     </div>
     <section >
-      <article class="message" :class="profilePicAccordion">
-        <div class="message-header" @click="toggleAccordion('profilePic')">
+      <article class="message" :class="mfaAccordion">
+        <div class="message-header" @click="toggleAccordion('mfa')">
           Multifactor Authentication <div class="arrow"> &nbsp; ></div>    
         </div>
         <div class="message-body">
           <div class="message-content">
-            <amplify-set-mfa></amplify-set-mfa>
+            <amplify-set-mfa v-bind:mfaConfig="mfaConfig"></amplify-set-mfa>
           </div>
         </div>
       </article>
-      <article class="message" :class="mfaAccordion">
-        <div class="message-header" @click="toggleAccordion('mfa')">
+      <article class="message" :class="profilePicAccordion">
+        <div class="message-header" @click="toggleAccordion('profilePic')">
           Profile Pic <div class="arrow"> &nbsp; ></div>    
         </div>
         <div class="message-body">
@@ -58,6 +58,7 @@ export default {
   name: 'Profile',
 
   data:  () => {
+    const that = this;
     return {
       profilePic: false,
       imagePath: `${AmplifyStore.state.user.username}/avatar`,
@@ -65,6 +66,7 @@ export default {
         header: 'Upload Profile Pic',
         accept: 'image/*',
         path: `${AmplifyStore.state.user.username}/`,
+        defaultName: 'avatar'
       },
       mfa: false,
       fields: [
@@ -76,9 +78,19 @@ export default {
   methods: {
     toggleAccordion: function(el) {
       this[el] = !this[el]
-    }
+    },
   },
   computed: {
+    mfaConfig: function() {
+      let that = this;
+      return {
+        mfaDescription: 'My app\'s mfa description!!',
+        mfaTypes: ['TOTP', 'SNS', 'None'],
+        cancelHandler: function() {
+          that.toggleAccordion('mfa')
+        },
+      }
+    },
     user: function() { 
       return AmplifyStore.state.user 
     },
