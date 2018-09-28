@@ -73,7 +73,7 @@ export default {
         { type: 'string', name: 'email', label: 'Email' },
         { type: 'string', name: 'phone_number', label: 'Phone Number' }
       ],
-    }
+    };
   },
   methods: {
     toggleAccordion: function(el) {
