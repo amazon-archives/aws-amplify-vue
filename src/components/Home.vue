@@ -37,9 +37,7 @@
         │   │   ├── Notes.vue
         │   │   ├── index.js
         │   │   └── persist
-        │   │       ├── CacheStore.js
-        │   │       ├── InMemoryStore.js
-        │   │       └── index.js
+        │   │       ├── graphqlActions.js
         │   └── index.js
         └── router
         │   ├── index.js

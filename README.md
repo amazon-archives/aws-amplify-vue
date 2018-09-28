@@ -25,10 +25,36 @@ $ npm install
 
 ```bash
 $ npm install -g aws-amplify/cli
+
 $ amplify init
+
 $ amplify add auth
+$ > Yes, use the default configuration.
+
 $ amplify add storage
+$ > Content (Images, audio, video, etc.)
+...
+$ > Auth users only
+$ > read/write
+
+$ amplify add api
+$ > GraphQL
+...
+$ > Amazon Cognito User Pool
+$ Do you have an annotated GraphQL schema? N
+$ Do you want a guided schema creation? Y
+$ > Single object with fields (e.g. "Todo" with id, name description)
+$ Do you want to edit the schema now? Y
+
+  type Todo @model {
+  id: ID!
+  note: String!
+  done: Boolean
+}
+
 $ amplify push
+$ Do you want to generate code for your newly created GraphQL API N
+
 ```
 
 3. Start the project    

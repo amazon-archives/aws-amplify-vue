@@ -85,7 +85,7 @@ export default {
       let that = this;
       return {
         mfaDescription: 'My app\'s mfa description!!',
-        mfaTypes: ['TOTP', 'SNS', 'None'],
+        mfaTypes: ['TOTP', 'SMS', 'None'],
         cancelHandler: function() {
           that.toggleAccordion('mfa')
         },
