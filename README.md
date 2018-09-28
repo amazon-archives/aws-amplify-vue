@@ -130,7 +130,6 @@ This sample uses three auth-related components from the `aws-amplify-vue` packag
   
   ```
 
-
 ### Storage Components
 
 In this sample, `src/amplify` package register a group of Amplify related components. Other than Auth components, there are two storage related components:
@@ -139,6 +138,10 @@ In this sample, `src/amplify` package register a group of Amplify related compon
   - showcase usage of Amplify Storage on binary data uploads
 * S3Image
   - showcase usage of Amplify Storage on binary data display
+
+### Logging
+
+This application uses verbose [logging](https://aws-amplify.github.io/amplify-js/media/logger_guide#logger) by default.  You can change the log level by altering the line ```window.LOG_LEVEL = 'VERBOSE';``` in ```App.vue```.
 
 ## License
 
