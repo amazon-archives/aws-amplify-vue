@@ -25,10 +25,36 @@ $ npm install
 
 ```bash
 $ npm install -g aws-amplify/cli
+
 $ amplify init
+
 $ amplify add auth
+$ > Yes, use the default configuration.
+
 $ amplify add storage
+$ > Content (Images, audio, video, etc.)
+...
+$ > Auth users only
+$ > read/write
+
+$ amplify add api
+$ > GraphQL
+...
+$ > Amazon Cognito User Pool
+$ Do you have an annotated GraphQL schema? N
+$ Do you want a guided schema creation? Y
+$ > Single object with fields (e.g. "Todo" with id, name description)
+$ Do you want to edit the schema now? Y
+
+  type Todo @model {
+  id: ID!
+  note: String!
+  done: Boolean
+}
+
 $ amplify push
+$ Do you want to generate code for your newly created GraphQL API N
+
 ```
 
 3. Start the project    
@@ -104,7 +130,6 @@ This sample uses three auth-related components from the `aws-amplify-vue` packag
   
   ```
 
-
 ### Storage Components
 
 In this sample, `src/amplify` package register a group of Amplify related components. Other than Auth components, there are two storage related components:
@@ -113,6 +138,10 @@ In this sample, `src/amplify` package register a group of Amplify related compon
   - showcase usage of Amplify Storage on binary data uploads
 * S3Image
   - showcase usage of Amplify Storage on binary data display
+
+### Logging
+
+This application uses verbose [logging](https://aws-amplify.github.io/amplify-js/media/logger_guide#logger) by default.  You can change the log level by altering the line ```window.LOG_LEVEL = 'VERBOSE';``` in ```App.vue```.
 
 ## License
 

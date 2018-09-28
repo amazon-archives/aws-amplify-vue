@@ -32,7 +32,7 @@
         />
       </svg>
     </div>
-    <div :style="itemStyle.title">{{note.title}}</div>
+    <div :style="itemStyle.title">{{todo.note}}</div>
     <div :style="itemStyle.remove" v-on:click="remove">x</div>
   </li>
 </template>
@@ -42,22 +42,22 @@ import { JS } from 'fsts'
 
 export default {
   name: 'Note',
-  props: ['note', 'theme'],
+  props: ['todo', 'theme'],
   computed: {
-    toggleOpacity: function() { return this.note.done? 1 : 0 },
+    toggleOpacity: function() { return this.todo.done? 1 : 0 },
     itemStyle: function () {
-      return this.note.done
+      return this.todo.done
         ? JS.deepAssign({}, this.theme.item, this.theme.item.done)
         : this.theme.item
     }
   },
   methods: {
     toggle() {
-      this.$emit('toggle', this.note.id)
+      this.$emit('toggle', this.todo)
     },
     remove() {
-      if (this.note.done) {
-        this.$emit('remove', this.note.id)
+      if (this.todo.done) {
+        this.$emit('remove', this.todo.id)
       }
     }
   }

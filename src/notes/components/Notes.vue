@@ -17,26 +17,19 @@
     <input
       :style="theme.input"
       autofocus
-      v-model="title"
+      v-model="note"
       v-on:keyup.enter="create"
     />
     <ul :style="theme.list">
       <a-note
-        v-for="note in notes"
-        :key="note.id"
-        :note="note"
+        v-for="todo in todos"
+        :key="todo.id"
+        :todo="todo"
         :theme="theme"
         v-on:toggle="toggle"
         v-on:remove="remove"
       />
     </ul>
-    <footer :style="theme.footer">
-      <div :style="theme.footer.filter">
-        <span :style="theme.footer.filter.mainItem" v-on:click="filter = 'all'">All</span>
-        <span :style="theme.footer.filter.item" v-on:click="filter = 'active'">Active</span>
-        <span :style="theme.footer.filter.item" v-on:click="filter = 'completed'">Completed</span>
-      </div>
-    </footer>
   </div>
 </template>
 
@@ -47,53 +40,78 @@ import { JS } from 'fsts'
 
 import AmplifyStore from '../../store/store'
 
-import NotesStore from './persist'
+import  { CreateTodo, ListTodos, UpdateTodo, DeleteTodo }  from './persist/graphqlActions';
+
 import NotesTheme from '../NotesTheme'
 import Note from './Note'
 
 Vue.component('a-note', Note)
-
-const logger = new Logger('NotesComp')
 
 export default {
   name: 'Notes',
   data () {
     return {
       theme: NotesTheme || {},
-      title: '',
+      note: '',
+      todos: [],
       filter: 'all',
-      ts: 0 // for force refresh notes after actions
+      logger: {},
+      actions: {
+        create: CreateTodo,
+        list: ListTodos,
+        update: UpdateTodo,
+        delete: DeleteTodo, 
+      },
     }
+  },
+  created() {
+    this.logger = new this.$Amplify.Logger('NOTES_component')
+    this.list();
   },
   computed: {
-    userId: function() { return AmplifyStore.state.userId },
-    notesStore: function() { return new NotesStore(this.userId) },
-    notes() {
-      if (this.filter === 'active') {
-        return this.notesStore.findAll({ done: true }, this.ts)
-      }
-      if (this.filter === 'completed') {
-        return this.notesStore.findAll({ done: false }, this.ts)
-      }
-      return this.notesStore.findAll({}, this.ts)
-    }
+    userId: function() { return AmplifyStore.state.userId }
   },
   methods: {
-    toggle(id) {
-      logger.debug('toggle ' + id)
-      this.notesStore.toggle(id)
-      this.ts = new Date().getTime()
+    list() {
+      this.$Amplify.API.graphql(this.$Amplify.graphqlOperation(this.actions.list, {}))
+      .then((res) => {
+        this.todos = res.data.listTodos.items;
+        this.logger.info(`Todos successfully listed`, res)
+      })
+      .catch((e) => {
+        this.logger.error(`Error listing Todos`, e)
+      });
+    },
+    toggle(todo) {
+      this.$Amplify.API.graphql(this.$Amplify.graphqlOperation(this.actions.update, {id: todo.id, note: todo.note, done: !todo.done}))
+        .then((res) => {
+          todo.done = !todo.done
+          this.logger.info(`Todo ${todo.id} done status toggled`, res);
+        })
+        .catch((e) => {
+          this.logger.error(`Error toggling Todo ${todo.id} done status`, e)
+        })
     },
     remove(id) {
-      logger.debug('remove ' + id)
-      this.notesStore.remove(id)
-      this.ts = new Date().getTime()
+      this.$Amplify.API.graphql(this.$Amplify.graphqlOperation(this.actions.delete, {id}))
+      .then((res) => {
+        this.logger.info(`Todo ${id} removed`, res);
+        this.list();
+      })
+      .catch((e) => {
+        this.logger.error(`Error removing Todo ${id}`, e)
+      })
     },
     create() {
-      logger.debug('create ' + this.title)
-      this.notesStore.create(this.title)
-      this.ts = new Date().getTime()
-      this.title = ''
+      this.$Amplify.API.graphql(this.$Amplify.graphqlOperation(this.actions.create, {note: this.note, done: true}))
+      .then((res) => {
+        this.logger.info(`Todo created`, res);
+        this.list();
+        this.note = '';
+      })
+      .catch((e) => {
+        this.logger.error(`Error creating Todo`, e)
+      })
     }
   }
 }
