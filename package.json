@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
+    "start": "NODE_ENV=development npm run dev",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
     "build": "node build/build.js"
