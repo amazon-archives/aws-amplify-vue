@@ -17,7 +17,7 @@ A VueJs starter app integrated with [aws-amplify](https://github.com/aws/aws-amp
 
 ```bash
 $ git clone https://github.com/aws-samples/aws-amplify-vue.git
-$ cd aws-amplify-vue-sample
+$ cd aws-amplify-vue
 $ npm install
 ```
 
