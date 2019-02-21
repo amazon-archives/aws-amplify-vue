@@ -17,14 +17,14 @@ A VueJs starter app integrated with [aws-amplify](https://github.com/aws/aws-amp
 
 ```bash
 $ git clone https://github.com/aws-samples/aws-amplify-vue.git
-$ cd aws-amplify-vue-sample
+$ cd aws-amplify-vue
 $ npm install
 ```
 
 2. Copy your `aws-exports` file into the src directory, or intialize a new [AWS Amplify CLI](https://github.com/aws-amplify/amplify-cli) project:
 
 ```bash
-$ npm install -g aws-amplify/cli
+$ npm install -g @aws-amplify/cli
 
 $ amplify init
 
