@@ -11,18 +11,20 @@
  * and limitations under the License.
  */
 
-import AmplifyStore from './AmplifyStore'
-import AmplifyTheme from './AmplifyTheme'
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-import AuthRouter, { AuthFilter } from './AuthRouter'
-import AuthView from './AuthView'
+Vue.use(Vuex)
 
-export * from './components'
+const store = new Vuex.Store({
+  state: {
+    user: null
+  },
+  mutations: {
+    setUser(state, user) {
+      state.user = user
+    },
+  }
+})
 
-export {
-  AmplifyStore,
-  AmplifyTheme,
-  AuthRouter,
-  AuthFilter,
-  AuthView
-}
+export default store

@@ -10,13 +10,17 @@
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
  * and limitations under the License.
  */
+import Vue from 'vue';
+import Menu from './Menu';
+import Home from './Home';
+import Profile from './Profile';
+import ProfileForm from './ProfileForm';
 
-import Menu from './Menu'
-import Home from './Home'
-import Profile from './Profile'
+Vue.component('profile-form', ProfileForm)
 
 export {
   Menu,
   Home,
-  Profile
+  Profile,
+  ProfileForm
 }

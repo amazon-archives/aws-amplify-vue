@@ -25,10 +25,36 @@ $ npm install
 
 ```bash
 $ npm install -g @aws-amplify/cli
+
 $ amplify init
+
 $ amplify add auth
+$ > Yes, use the default configuration.
+
 $ amplify add storage
+$ > Content (Images, audio, video, etc.)
+...
+$ > Auth users only
+$ > read/write
+
+$ amplify add api
+$ > GraphQL
+...
+$ > Amazon Cognito User Pool
+$ Do you have an annotated GraphQL schema? N
+$ Do you want a guided schema creation? Y
+$ > Single object with fields (e.g. "Todo" with id, name description)
+$ Do you want to edit the schema now? Y
+
+  type Todo @model {
+  id: ID!
+  note: String!
+  done: Boolean
+}
+
 $ amplify push
+$ Do you want to generate code for your newly created GraphQL API N
+
 ```
 
 3. Start the project    
@@ -39,88 +65,83 @@ $ npm start
 
 Check http://localhost:8080/
 
-## AWS Amplify Integration Explained
-
-This sample demostrate some of the AWS Amplify integration with VueJs. Most of the Amplify logics are contained inside `src/amplify` folder.
 
 ### Setup AWS Amplify
 
 It is recommended to configure Amplify library at the entry point of application. Here we choose `main.js`
 
 ```js
-import Amplify, { Auth, Logger } from 'aws-amplify'
+import Amplify from 'aws-amplify';
+import { components } from 'aws-amplify-vue'; 
 import aws_exports from './aws-exports'
 
 ...
 
 Amplify.configure(aws_exports)
-```
 
-To have a quick test of the library, we added this piece of code.
+...
 
-```js
-Amplify.Logger.LOG_LEVEL = 'DEBUG' // to show detailed logs from Amplify library
-
-const logger = new Logger('main')
-
-Auth.currentUserInfo()
-  .then(user => logger.debug(user))
-  .catch(err => logger.debug(err))
-```
-
-### Auth Routing
-
-There are two major auth routing concerns in an application, 1) Auth UI routing; 2) Access Control to application.
-
-#### Auth UI routing
-
-Just add AuthRouter to router.
-
-```js
-import { AuthRouter } from '../amplify'
-
-Vue.use(Router)
-
-const router = new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-
-    ...
-
-    AuthRouter
-  ]
+new Vue({
+  el: '#app',
+  router: router,
+  template: '<App/>',
+  components: { 
+    App,
+    ...components
+  }
 })
 
 ```
 
-#### Access Control
+We then install the AmplifyPlugin in the application's ```router/index.js``` file:
 
-Just add AuthFilter to router
-
-```js
-import { AuthFilter } from '../amplify'
+```
+import { AmplifyPlugin } from 'aws-amplify-vue';
 
 ...
 
-router.beforeEach(AuthFilter);
+
+Vue.use(AmplifyPlugin, AmplifyModules);
+
 ```
+
+This makes the Amplify library available throughout the application as a Vue Plugin.
+
+### Authentication Components
+
+This sample uses three auth-related components from the `aws-amplify-vue` package:
+
+* Authenticator
+  - allows new users to signup, signin, and complete verification/multifactor authentication steps.
+  - included in the router as the default route that is shown when the user is not logged in.
+
+* SetMFA
+  - included in the profile page
+  - allows users to select their preferred MFA types
+  - you can configure the MFA options that are dispayed in the SetMFA component by binding a mfaConfig object to the component like so:
+  ```
+  <amplify-set-mfa v-bind:mfaConfig="mfaConfig"></amplify-set-mfa>
+
+  ...
+
+  mfaConfig = {
+    mfaTypes: ['SMS', 'TOTP', 'None']
+  }
+  
+  ```
 
 ### Storage Components
 
 In this sample, `src/amplify` package register a group of Amplify related components. Other than Auth components, there are two storage related components:
 
-* [PhotoPicker](https://github.com/aws-samples/aws-amplify-vue-sample/blob/master/src/amplify/components/storage/PhotoPicker.vue)
-  - registered as a-photo-picker
-  - showcase usage of Amplify Storage on binary data
-* [SimpleForm](https://github.com/aws-samples/aws-amplify-vue-sample/blob/master/src/amplify/components/storage/SimpleForm.vue)
-  - registered as a-simple-form
-  - showcase usage of Amplify Storage on text data
+* PhotoPicker
+  - showcase usage of Amplify Storage on binary data uploads
+* S3Image
+  - showcase usage of Amplify Storage on binary data display
 
-[Profile.vue](https://github.com/aws-samples/aws-amplify-vue-sample/blob/master/src/components/Profile.vue) uses the two components to store user avatar and attributes.
+### Logging
+
+This application uses verbose [logging](https://aws-amplify.github.io/amplify-js/media/logger_guide#logger) by default.  You can change the log level by altering the line ```window.LOG_LEVEL = 'VERBOSE';``` in ```App.vue```.
 
 ## License
 
