@@ -24,7 +24,7 @@ $ npm install
 2. Copy your `aws-exports` file into the src directory, or intialize a new [AWS Amplify CLI](https://github.com/aws-amplify/amplify-cli) project:
 
 ```bash
-$ npm install -g aws-amplify/cli
+$ npm install -g @aws-amplify/cli
 
 $ amplify init
 
