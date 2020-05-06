@@ -28,11 +28,43 @@ const DeleteTodo = `mutation DeleteTodo($id: ID!) {
     id
   }
 }
-`
+`;
+
+const onCreateTodo = /* GraphQL */ `
+  subscription OnCreateTodo {
+    onCreateTodo {
+      id
+      note
+      done
+    }
+  }
+`;
+const onUpdateTodo = /* GraphQL */ `
+  subscription OnUpdateTodo {
+    onUpdateTodo {
+      id
+      note
+      done
+    }
+  }
+`;
+const onDeleteTodo = /* GraphQL */ `
+  subscription OnDeleteTodo {
+    onDeleteTodo {
+      id
+      note
+      done
+    }
+  }
+`;
+
 
 export {
   CreateTodo,
   ListTodos,
   UpdateTodo,
-  DeleteTodo
+  DeleteTodo,
+  onCreateTodo,
+  onUpdateTodo,
+  onDeleteTodo,
 }
