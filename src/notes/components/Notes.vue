@@ -40,7 +40,7 @@ import { JS } from 'fsts'
 
 import AmplifyStore from '../../store/store'
 
-import  { CreateTodo, ListTodos, UpdateTodo, DeleteTodo }  from './persist/graphqlActions';
+import  { CreateTodo, ListTodos, UpdateTodo, DeleteTodo, onCreateTodo, onUpdateTodo, onDeleteTodo }  from './persist/graphqlActions';
 
 import NotesTheme from '../NotesTheme'
 import Note from './Note'
@@ -67,6 +67,24 @@ export default {
   created() {
     this.logger = new this.$Amplify.Logger('NOTES_component')
     this.list();
+    this.$Amplify.API.graphql(this.$Amplify.graphqlOperation(onCreateTodo)).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.list();
+      }
+    });
+    this.$Amplify.API.graphql(this.$Amplify.graphqlOperation(onUpdateTodo)).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.list();
+      }
+    });
+    this.$Amplify.API.graphql(this.$Amplify.graphqlOperation(onDeleteTodo)).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.list();
+      }
+    });
   },
   computed: {
     userId: function() { return AmplifyStore.state.userId }
