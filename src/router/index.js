@@ -28,7 +28,7 @@ let user;
 
 getUser().then((user, error) => {
   if (user) {
-    router.push({path: '/'})
+    router.push({path: '/'});
   }
 })
 
@@ -37,10 +37,10 @@ AmplifyEventBus.$on('authState', async (state) => {
   if (state === 'signedOut'){
     user = null;
     AmplifyStore.commit('setUser', null);
-    router.push({path: '/auth'})
+    router.push({path: '/auth'});
   } else if (state === 'signedIn') {
     user = await getUser();
-    router.push({path: '/'})
+    router.push({path: '/'});
   }
 });
 
@@ -52,7 +52,7 @@ function getUser() {
     } 
   }).catch((e) => {
     AmplifyStore.commit('setUser', null);
-    return null
+    return null;
   });
 }
 
@@ -104,9 +104,9 @@ router.beforeResolve(async (to, from, next) => {
         }
       });
     }
-    return next()
+    return next();
   }
-  return next()
+  return next();
 })
 
 export default router
