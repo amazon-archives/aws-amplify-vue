@@ -18,7 +18,6 @@
     "@vue/test-utils": "^1.0.0-beta.27",
     "aws-amplify": "^1.1.4",
     "aws-amplify-vue": "^0.1.1",
-    "aws-sdk": "^2.209.0",
     "e": "0.0.4",
     "fsts": "^0.0.39",
     "vue": "^2.5.16",
